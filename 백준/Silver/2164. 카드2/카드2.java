@@ -11,19 +11,24 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        Queue<Integer> q = new LinkedList<>();
         int n = Integer.parseInt(br.readLine());
 
+        int [] q = new int [2 * n];
         for (int i = 1; i <= n; i++) {
-            q.offer(i);
+            q[i] = i;
         }
 
-        while (q.size() > 1) {
-            q.poll();
-            q.offer(q.poll());
-        }
-        System.out.println(q.poll());
+        int first_index = 1;
+        int last_index = n;
 
+        while (n-- > 1) {
+            first_index++;
+            q[last_index + 1] = q[first_index];
+            last_index++;
+            first_index++;
+
+        }
+        System.out.println(q[first_index]);
 
     }
 }
