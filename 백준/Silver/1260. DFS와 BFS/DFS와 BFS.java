@@ -1,16 +1,21 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class Main {
     static ArrayList<Integer>[] graph;
     static boolean[] visited;
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();  // 정점 개수
-        int m = sc.nextInt();  // 간선 개수
-        int v = sc.nextInt();  // 시작 정점
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        int n = Integer.parseInt(st.nextToken());  // 정점 개수
+        int m = Integer.parseInt(st.nextToken());  // 간선 개수
+        int v = Integer.parseInt(st.nextToken());  // 시작 정점
 
         graph = new ArrayList[n + 1];
         for (int i = 1; i <= n; i++) {
@@ -18,8 +23,9 @@ public class Main {
         }
 
         for (int i = 0; i < m; i++) {
-            int a = sc.nextInt();
-            int b = sc.nextInt();
+            st = new StringTokenizer(br.readLine());
+            int a = Integer.parseInt(st.nextToken());
+            int b = Integer.parseInt(st.nextToken());
             graph[a].add(b);
             graph[b].add(a);
         }
