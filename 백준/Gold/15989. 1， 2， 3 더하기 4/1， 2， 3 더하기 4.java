@@ -1,34 +1,28 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) {
-        int[] dp = new int[10001];
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        // dp 배열 초기화
-        for (int i = 0; i <= 10000; i++) {
+        int[] dp = new int[10001];
+        for (int i = 0; i < 10001; i++) {
             dp[i] = 1;
         }
-
-        // dp 배열 채우기 (2로 나눈 경우)
-        for (int i = 2; i <= 10000; i++) {
-            dp[i] += dp[i - 2];
+        for (int i = 2; i < 10001; i++) {
+            dp[i] += dp[i-2];
+        }
+        for (int i = 3; i < 10001; i++) {
+            dp[i] += dp[i-3];
         }
 
-        // dp 배열 채우기 (3으로 나눈 경우)
-        for (int i = 3; i <= 10000; i++) {
-            dp[i] += dp[i - 3];
-        }
-
-        // 입력 처리
-        Scanner sc = new Scanner(System.in);
-        int t = sc.nextInt();
-
-        // 테스트 케이스 실행
+        int t = Integer.parseInt(br.readLine());
         for (int i = 0; i < t; i++) {
-            int n = sc.nextInt();
+            int n = Integer.parseInt(br.readLine());
             System.out.println(dp[n]);
         }
 
-        sc.close();
     }
+
 }
